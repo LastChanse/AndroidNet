@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="AndroidNet/AndroidNet.csproj">
+    <Deploy />
+  </Project>
+  <Project Path="SimpleHeader/SimpleHeader.csproj" Id="3cc234c6-4854-429d-881d-d97e62ac7e0f" />
+</Solution>
