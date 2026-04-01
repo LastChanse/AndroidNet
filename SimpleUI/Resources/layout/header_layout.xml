@@ -14,6 +14,7 @@
     android:background="@drawable/background_component"
 						>
 			<TextView
+				android:id="@+id/headerText"
 				android:layout_width="236px"
 				android:layout_height="23px"
 				android:layout_marginLeft="20px"
@@ -21,7 +22,19 @@
 				android:textSize="20px"
 				android:textFontWeight="700"
 				android:fontFamily="Roboto"
-				android:text="Header"/>
+				android:text="Header"
+				android:textColor="#333333"/>
+			<TextView
+				android:id="@+id/subheaderText"
+				android:layout_width="236px"
+				android:layout_height="16px"
+				android:layout_marginLeft="20px"
+				android:layout_marginTop="47px"
+				android:textSize="14px"
+				android:textFontWeight="400"
+				android:fontFamily="Roboto"
+				android:text="Subheader"
+				android:textColor="#9299A2"/>
 		</RelativeLayout>
 	</LinearLayout>
 </LinearLayout>
