@@ -2,5 +2,5 @@
   <Project Path="AndroidNet/AndroidNet.csproj">
     <Deploy />
   </Project>
-  <Project Path="SimpleHeader/SimpleHeader.csproj" Id="3cc234c6-4854-429d-881d-d97e62ac7e0f" />
+  <Project Path="SimpleUI/SimpleUI.csproj" Id="e974851f-3f18-4495-9bf1-15ba81d6d39b" />
 </Solution>

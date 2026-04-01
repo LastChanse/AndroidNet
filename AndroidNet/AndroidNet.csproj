@@ -15,6 +15,6 @@
     <TrimMode>full</TrimMode>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SimpleHeader\SimpleHeader.csproj" />
+    <ProjectReference Include="..\SimpleUI\SimpleUI.csproj" />
   </ItemGroup>
 </Project>

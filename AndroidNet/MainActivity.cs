@@ -1,3 +1,5 @@
+using static Android.Preferences.PreferenceActivity;
+
 namespace AndroidNet
 {
     [Activity(Label = "@string/app_name", MainLauncher = true)]
