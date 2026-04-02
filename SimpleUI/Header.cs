@@ -10,6 +10,7 @@ namespace SimpleUI
     {
         private TextView header;
         private TextView subheader;
+        private ImageView headerImage;
 
         public Header(Context? context, IAttributeSet? attrs) : base(context, attrs)
         {

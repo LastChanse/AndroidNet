@@ -1,14 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent">
-
-	<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="500px"
-    android:layout_centerInParent="true"
-	android:background="#333">
-		<RelativeLayout
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content">
+	<RelativeLayout
     android:layout_width="328px"
     android:layout_height="81px"
     android:background="@drawable/background_component"
@@ -29,12 +23,21 @@
 				android:layout_width="236px"
 				android:layout_height="16px"
 				android:layout_marginLeft="20px"
-				android:layout_marginTop="47px"
+				android:layout_below="@+id/headerText"
+				android:layout_marginTop="8px"
 				android:textSize="14px"
 				android:textFontWeight="400"
 				android:fontFamily="Roboto"
 				android:text="Subheader"
 				android:textColor="#9299A2"/>
+
+		<ImageView
+			android:id="@+id/headerImage"
+			android:layout_width="40px"
+			android:layout_height="40px"
+			android:layout_marginTop="16px"
+			android:layout_marginRight="16px"
+			android:src="@drawable/default_img"
+			android:layout_alignParentRight="true"/>
 		</RelativeLayout>
-	</LinearLayout>
 </LinearLayout>
