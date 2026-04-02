@@ -12,8 +12,7 @@ namespace SimpleUI
         public SimpleButton(Context? context, IAttributeSet? attrs) : base(context, attrs)
         {
             // Загружаем макет кнопки
-            LayoutInflater inflater;
-            inflater = (LayoutInflater)context.GetSystemService(Context.LayoutInflaterService);
+            var inflater = (LayoutInflater)context.GetSystemService(Context.LayoutInflaterService);
             inflater.Inflate(Resource.Layout.button_layout, this, true);
             
             button = FindViewById<Button>(Resource.Id.button);

@@ -8,20 +8,20 @@ namespace SimpleUI
 {
     public class Header : RelativeLayout
     {
-        private TextView header;
-        private TextView subheader;
-        private ImageView headerImage;
-        private Button headerButton;
-        private RelativeLayout box;
-        private Context? _context;
+        TextView header;
+        TextView subheader;
+        ImageView headerImage;
+        Button headerButton;
+        RelativeLayout box;
+        Context? headerContext;
 
         public Header(Context? context, IAttributeSet? attrs) : base(context, attrs)
         {
             // Контекст сохраняем
-            _context = context;
+            headerContext = context;
 
             // Получаем кастомные атрибуты
-            TypedArray custom_attrs = _context.Theme.ObtainStyledAttributes(attrs, Resource.Styleable.Header, 0, 0);
+            var custom_attrs = headerContext.Theme.ObtainStyledAttributes(attrs, Resource.Styleable.Header, 0, 0);
 
             // Выбираем макет
             ChoseLayout(custom_attrs);
@@ -29,23 +29,23 @@ namespace SimpleUI
         }
 
         // Метод управления тенью
-        private void ShadowController(TypedArray custom_attrs)
+        void ShadowController(TypedArray custom_attrs)
         {
-            int theme_color = _context.Resources.GetColor(Resource.Color.theme_color, _context.Theme);
+            int theme_color = headerContext.Resources.GetColor(Resource.Color.theme_color, headerContext.Theme);
             if (theme_color < -100) {
             } else
             {
                 box = FindViewById<RelativeLayout>(Resource.Id.box);
-                box.Elevation = PxToDp(_context, 36);
+                box.Elevation = PxToDp(headerContext, 36);
             }
         }
 
         // Метод выбора макета в зависимости от полученых атрибутов
-        private void ChoseLayout(TypedArray custom_attrs)
+        void ChoseLayout(TypedArray custom_attrs)
         {
-            String header_text = custom_attrs.GetString(Resource.Styleable.Header_headerText);
-            String subheader_text = custom_attrs.GetString(Resource.Styleable.Header_subheaderText);
-            int image = custom_attrs.GetResourceId(Resource.Styleable.Header_image, Resource.Drawable.default_img);
+            var header_text = custom_attrs.GetString(Resource.Styleable.Header_headerText);
+            var subheader_text = custom_attrs.GetString(Resource.Styleable.Header_subheaderText);
+            var image = custom_attrs.GetResourceId(Resource.Styleable.Header_image, Resource.Drawable.default_img);
             
             if (subheader_text == null)
                 HeaderMinimal(custom_attrs, header_text, image);
@@ -54,11 +54,10 @@ namespace SimpleUI
         }
 
         // Метод отрисовки макета с заголовком, подзаголовком и изображением
-        private void HeaderStandart(TypedArray custom_attrs, String header_text, String subheader_text, int image)
+        void HeaderStandart(TypedArray custom_attrs, String header_text, String subheader_text, int image)
         {
             // Загружаем стандартный макет
-            LayoutInflater inflater;
-            inflater = (LayoutInflater)_context.GetSystemService(Context.LayoutInflaterService);
+            var inflater = (LayoutInflater)headerContext.GetSystemService(Context.LayoutInflaterService);
             inflater.Inflate(Resource.Layout.header_layout, this, true);
 
             // Получаем элементы макета
@@ -75,11 +74,10 @@ namespace SimpleUI
         }
 
         // Метод отрисовки макета с заголовком и изображением
-        private void HeaderMinimal(TypedArray custom_attrs, String header_text, int image)
+        void HeaderMinimal(TypedArray custom_attrs, String header_text, int image)
         {
             // Загружаем минимальный макет
-            LayoutInflater inflater;
-            inflater = (LayoutInflater)_context.GetSystemService(Context.LayoutInflaterService);
+            var inflater = (LayoutInflater)headerContext.GetSystemService(Context.LayoutInflaterService);
             inflater.Inflate(Resource.Layout.header_minimal_layout, this, true);
 
             // Получаем элементы макета
@@ -94,7 +92,7 @@ namespace SimpleUI
         }
 
         // Метод отрисовки макета с заголовком, подзаголовком, изображением и кнопкой
-        private void HeaderMaximal()
+        void HeaderMaximal()
         {
 
         }
