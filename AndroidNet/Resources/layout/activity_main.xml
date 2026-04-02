@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="30dp"
-	android:background="#FFF"
+	android:background="#F5F5F5"
 	android:clipChildren="false">
 	
 	<!-- Заголовок -->
@@ -36,6 +36,7 @@
 	    android:layout_below="@+id/title_line"
 		android:orientation="vertical"
 		android:layout_marginLeft="16dp"
+		android:gravity="center"
 		android:clipChildren="false"
 		>
 
@@ -59,8 +60,14 @@
 		<!-- Виджет элемента -->
 
 		<!-- Виджет элемента с кнопкой закрытия -->
+		
+		<!-- Виджет кнопки -->
 
-
+		<SimpleUI.SimpleButton
+		android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+		
+	    />
 	</LinearLayout>
 
 </RelativeLayout>

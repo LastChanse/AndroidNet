@@ -11,6 +11,7 @@ namespace SimpleUI
         private TextView header;
         private TextView subheader;
         private ImageView headerImage;
+        private Button headerButton;
         private RelativeLayout box;
         private Context? _context;
 

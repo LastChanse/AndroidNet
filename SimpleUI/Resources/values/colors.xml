@@ -5,11 +5,11 @@
 	<color name="header">#333333</color>
 	<color name="subheader">#9299A2</color>
 	<color name="background_component">#FFF</color>
-	<color name="background_component_shadow">#0000001F</color>
 
 	<!-- Компонент кнопки -->
 	<color name="button">#428BF9</color>
-	<color name="background_button_component">#00102408</color>
+	<color name="background_button_component">#08001024</color>
+	<color name="background_button_component_hover">#0F001024</color>
 
 	<!-- Компонент элемента -->
 
