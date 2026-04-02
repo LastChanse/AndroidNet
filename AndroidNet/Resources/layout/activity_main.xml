@@ -3,22 +3,45 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:paddingTop="300px">
 	
     <TextView 
+        android:id="@+id/title"
         android:layout_width="wrap_content"
-        android:layout_height="50px"
-	    android:layout_marginTop="400px"
+        android:layout_height="wrap_content"
 		android:layout_alignParentTop="true"
-	    android:background="#555"
+        android:textSize="36px"
         android:text="@string/app_text"
+        android:layout_marginBottom="16px"
     />
 
+
+	<View
+        android:id="@+id/title_line"
+		android:layout_width="match_parent"
+	    android:layout_below="@+id/title"
+		android:layout_height="2dp"
+		android:background="#000"
+        android:layout_marginBottom="26px"/>
+
 	<SimpleUI.Header
-    android:layout_width="match_parent"
-    android:layout_height="500px"
-    android:layout_centerInParent="true"
-	android:background="#DDD"
+    android:id="@+id/component1"
+	android:layout_below="@+id/title_line"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+	/>
+
+	<SimpleUI.Header
+    android:id="@+id/component2"
+    android:layout_marginLeft="52px"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+	android:layout_below="@+id/title_line"
+	android:layout_toRightOf="@+id/component1"
+    app:headerText="Заголовок"
+    app:subheaderText="Подзаголовок"
+    app:image="@drawable/orange_img"
 	/>
 	
 </RelativeLayout>
