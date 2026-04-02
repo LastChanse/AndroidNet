@@ -1,3 +1,4 @@
+using Android.Views;
 using static Android.Preferences.PreferenceActivity;
 
 namespace AndroidNet
@@ -9,7 +10,9 @@ namespace AndroidNet
         {
             base.OnCreate(savedInstanceState);
 
-            // Set our view from the "main" layout resource
+            // Убираем заголовок
+            this.RequestWindowFeature(WindowFeatures.NoTitle);
+
             SetContentView(Resource.Layout.activity_main);
         }
     }
