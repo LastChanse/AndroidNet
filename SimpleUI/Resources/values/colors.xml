@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+	<!-- Светлая тема -->
+	<!-- Компонент заголовка -->
+	<color name="header">#333333</color>
+	<color name="subheader">#9299A2</color>
+	<color name="background_component">#FFF</color>
+	<color name="background_component_shadow">#0000001F</color>
+
+	<!-- Компонент кнопки -->
+	<color name="button">#428BF9</color>
+	<color name="background_button_component">#00102408</color>
+
+	<!-- Компонент элемента -->
+
+	<!-- Компонент коробки с заголовком -->
+	
+	
+	<!-- Индикатор текущей темы -->
+	<color name="theme_color">#FFF</color>
+
+</resources>
