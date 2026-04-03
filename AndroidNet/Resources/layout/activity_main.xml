@@ -64,8 +64,21 @@
 	    />
 
 		<!-- Виджет элемента -->
-
+		<SimpleUI.Item
+			android:clickable="true"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+	    />
 		<!-- Виджет элемента с кнопкой закрытия -->
+		<SimpleUI.Item
+			android:id="@+id/title"
+			android:clickable="true"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			app:title="Элемент"
+			app:description="Описание"
+			app:closeButtonVisible="true"
+	    />
 		
 		<!-- Виджет кнопки -->
 

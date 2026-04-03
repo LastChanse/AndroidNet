@@ -7,10 +7,13 @@ namespace SimpleUI
     {
         public SimpleButton(Context? context, IAttributeSet? attrs) : base(context, attrs)
         {
-            var padding = (int)Utils.DpToPx(context, 10);
-            SetPadding(padding, padding, padding, padding);
+            if (Text != "X") {
+                var padding = (int)Utils.DpToPx(context, 10);
+                SetPadding(padding, padding, padding, padding);
+                SetTextColor(context.Resources.GetColor(Resource.Color.button, context.Theme));
+            }
             SetBackgroundResource(Resource.Drawable.background_button_component);
-            SetTextColor(context.Resources.GetColor(Resource.Color.button, context.Theme));
+
 
             Touch += (sender, e) =>
             {

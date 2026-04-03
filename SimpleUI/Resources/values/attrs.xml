@@ -6,4 +6,11 @@
 		<attr name="image" format="reference" />
 		<attr name="buttonText" format="string" />
 	</declare-styleable>
+
+	<declare-styleable name="Item">
+		<attr name="title" format="string" />
+		<attr name="description" format="string" />
+		<attr name="icon" format="reference" />
+		<attr name="closeButtonVisible" format="boolean" />
+	</declare-styleable>
 </resources>

@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <resources>
 	<!-- Светлая тема -->
+	<color name="background_component">#FFF</color>
+
 	<!-- Компонент заголовка -->
 	<color name="header">#333333</color>
 	<color name="subheader">#9299A2</color>
-	<color name="background_component">#FFF</color>
 
 	<!-- Компонент кнопки -->
 	<color name="button">#428BF9</color>
@@ -12,6 +13,8 @@
 	<color name="background_button_component_hover">#0F001024</color>
 
 	<!-- Компонент элемента -->
+	<color name="title">#333333</color>
+	<color name="description">#9299A2</color>
 
 	<!-- Компонент коробки с заголовком -->
 	

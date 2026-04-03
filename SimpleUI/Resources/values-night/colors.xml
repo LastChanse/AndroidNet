@@ -1,8 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <resources>
 	<!-- Тёмная тема -->
-	
-	<!-- Компонент заголовка -->
 	<color name="background_component">#F6F7F8</color>
 
 
