@@ -25,11 +25,12 @@ namespace SimpleUI
 
             // Выбираем макет
             ChoseLayout(custom_attrs);
-
+            // Тень при белой теме
+            ShadowController();
         }
 
         // Метод управления тенью
-        void ShadowController(TypedArray custom_attrs)
+        void ShadowController()
         {
             int theme_color = headerContext.Resources.GetColor(Resource.Color.theme_color, headerContext.Theme);
             if (theme_color < -100) {
@@ -65,7 +66,6 @@ namespace SimpleUI
             subheader = FindViewById<TextView>(Resource.Id.subheaderText);
             headerImage = FindViewById<ImageView>(Resource.Id.headerImage);
 
-            ShadowController(custom_attrs);
 
             // Применяем атрибуты
             header.Text = header_text != null ? header_text : "Header";
@@ -84,7 +84,6 @@ namespace SimpleUI
             header = FindViewById<TextView>(Resource.Id.headerText);
             headerImage = FindViewById<ImageView>(Resource.Id.headerImage);
 
-            ShadowController(custom_attrs);
 
             // Применяем атрибуты
             header.Text = header_text != null ? header_text : "Header";

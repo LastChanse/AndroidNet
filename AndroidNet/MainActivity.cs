@@ -15,5 +15,9 @@ namespace AndroidNet
 
             SetContentView(Resource.Layout.activity_main);
         }
+
+        public void test(View view) {
+            Toast.MakeText(this, "Кнопка нажата", ToastLength.Short).Show();
+        }
     }
 }
