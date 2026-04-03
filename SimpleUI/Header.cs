@@ -4,95 +4,134 @@ using Android.Util;
 using Android.Views;
 using static SimpleUI.Utils;
 
+
 namespace SimpleUI
 {
     public class Header : RelativeLayout
     {
-        TextView header;
-        TextView subheader;
-        ImageView headerImage;
-        Button headerButton;
+        TextView headerTextView;
+        TextView subheaderTextView;
+        ImageView headerImageView;
+        SimpleButton headerSimpleButton;
         RelativeLayout box;
-        Context? headerContext;
+        int elevation = 8;
+
+        // Атрибуты
+        String headerText;
+        String subheaderText;
+        int image = Resource.Drawable.default_img;
+        String buttonText;
 
         public Header(Context? context, IAttributeSet? attrs) : base(context, attrs)
         {
             // Контекст сохраняем
-            headerContext = context;
+            LayoutInflater.From(context).Inflate(Resource.Layout.header_layout, this, true);
+            
+            // Получаем элементы макета
+            headerTextView = FindViewById<TextView>(Resource.Id.headerText);
+            subheaderTextView = FindViewById<TextView>(Resource.Id.subheaderText);
+            headerImageView = FindViewById<ImageView>(Resource.Id.headerImage);
+            headerSimpleButton = FindViewById<SimpleButton>(Resource.Id.headerButton);
+            box = FindViewById <RelativeLayout> (Resource.Id.box);
 
-            // Получаем кастомные атрибуты
-            var custom_attrs = headerContext.Theme.ObtainStyledAttributes(attrs, Resource.Styleable.Header, 0, 0);
+            headerSimpleButton.Text = "test";
+
+            // Загрузка атрибутов
+            LoadFromXML(attrs);
 
             // Выбираем макет
-            ChoseLayout(custom_attrs);
+            ChoseLayout();
+
             // Тень при белой теме
             ShadowController();
+        }
+
+        // Метод для задания onClick
+        public void SetOnClick(Action action)
+        {
+            HeaderMaximal();
+            headerSimpleButton.Touch += (sender, e) =>
+            {
+                if (e.Event.Action == MotionEventActions.Up)
+                    action();//Toast.MakeText(this, "Кнопка нажата", ToastLength.Short).Show();
+            };
+        }
+
+        // Метод загрузки атрибутов из xaml
+        void LoadFromXML(IAttributeSet? attrs) {
+            // Получаем кастомные атрибуты
+            var customAttrs = Context.Theme.ObtainStyledAttributes(attrs, Resource.Styleable.Header, 0, 0);
+            headerText = customAttrs.GetString(Resource.Styleable.Header_headerText);
+            subheaderText = customAttrs.GetString(Resource.Styleable.Header_subheaderText);
+            image = customAttrs.GetResourceId(Resource.Styleable.Header_image, Resource.Drawable.default_img);
+            buttonText = customAttrs.GetString(Resource.Styleable.Header_buttonText);
+
+            // Применяем атрибуты
+            headerTextView.Text = headerText == null ? "Header" : headerText;
+            subheaderTextView.Text = subheaderText == null ? "Subheader" : subheaderText;
+            headerImageView.SetImageResource(image);
+            headerSimpleButton.Text = buttonText == null ? "Button" : buttonText;
         }
 
         // Метод управления тенью
         void ShadowController()
         {
-            int theme_color = headerContext.Resources.GetColor(Resource.Color.theme_color, headerContext.Theme);
-            if (theme_color < -100) {
+            int themeColor = Context.Resources.GetColor(Resource.Color.theme_color, Context.Theme);
+            if (themeColor < -100) {
             } else
             {
                 box = FindViewById<RelativeLayout>(Resource.Id.box);
-                box.Elevation = PxToDp(headerContext, 36);
+                box.Elevation = DpToPx(Context, elevation);
             }
         }
 
         // Метод выбора макета в зависимости от полученых атрибутов
-        void ChoseLayout(TypedArray custom_attrs)
+        void ChoseLayout()
         {
-            var header_text = custom_attrs.GetString(Resource.Styleable.Header_headerText);
-            var subheader_text = custom_attrs.GetString(Resource.Styleable.Header_subheaderText);
-            var image = custom_attrs.GetResourceId(Resource.Styleable.Header_image, Resource.Drawable.default_img);
-            
-            if (subheader_text == null)
-                HeaderMinimal(custom_attrs, header_text, image);
+            if (subheaderText == null)
+                HeaderMinimal();
+            else if (buttonText == null)
+                HeaderStandart();
             else
-                HeaderStandart(custom_attrs, header_text, subheader_text, image);
+                HeaderMaximal();
         }
 
         // Метод отрисовки макета с заголовком, подзаголовком и изображением
-        void HeaderStandart(TypedArray custom_attrs, String header_text, String subheader_text, int image)
+        void HeaderStandart()
         {
-            // Загружаем стандартный макет
-            var inflater = (LayoutInflater)headerContext.GetSystemService(Context.LayoutInflaterService);
-            inflater.Inflate(Resource.Layout.header_layout, this, true);
-
-            // Получаем элементы макета
-            header = FindViewById<TextView>(Resource.Id.headerText);
-            subheader = FindViewById<TextView>(Resource.Id.subheaderText);
-            headerImage = FindViewById<ImageView>(Resource.Id.headerImage);
+            // Применяем макет
+            headerSimpleButton.Visibility = ViewStates.Gone;
+            subheaderTextView.Visibility = ViewStates.Visible;
 
 
-            // Применяем атрибуты
-            header.Text = header_text != null ? header_text : "Header";
-            subheader.Text = subheader_text != null ? subheader_text : "Subheader";
-            headerImage.SetImageResource(image);
         }
 
         // Метод отрисовки макета с заголовком и изображением
-        void HeaderMinimal(TypedArray custom_attrs, String header_text, int image)
+        void HeaderMinimal()
         {
-            // Загружаем минимальный макет
-            var inflater = (LayoutInflater)headerContext.GetSystemService(Context.LayoutInflaterService);
-            inflater.Inflate(Resource.Layout.header_minimal_layout, this, true);
+            // Применяем макет
+            headerSimpleButton.Visibility = ViewStates.Gone;
+            subheaderTextView.Visibility = ViewStates.Gone;
+            
+            var layoutParams = (RelativeLayout.LayoutParams)box.LayoutParameters;
+            layoutParams.Height = ((int)DpToPx(Context, 72));
+            box.LayoutParameters = layoutParams;
 
-            // Получаем элементы макета
-            header = FindViewById<TextView>(Resource.Id.headerText);
-            headerImage = FindViewById<ImageView>(Resource.Id.headerImage);
-
-
-            // Применяем атрибуты
-            header.Text = header_text != null ? header_text : "Header";
-            headerImage.SetImageResource(image);
+            var layoutParams2 = (ViewGroup.MarginLayoutParams)headerTextView.LayoutParameters;
+            layoutParams2.SetMargins((int)DpToPx(Context, 20f), (int)DpToPx(Context, 24.5f), 0, 0);
+            headerTextView.LayoutParameters = layoutParams2;
         }
 
         // Метод отрисовки макета с заголовком, подзаголовком, изображением и кнопкой
         void HeaderMaximal()
         {
+            // Применяем макет
+            headerSimpleButton.Visibility = ViewStates.Visible;
+            subheaderTextView.Visibility = ViewStates.Visible;
+
+            var layoutParams = (RelativeLayout.LayoutParams)box.LayoutParameters;
+            layoutParams.Height = ((int)DpToPx(Context, 141));
+            box.LayoutParameters = layoutParams;
 
         }
     }

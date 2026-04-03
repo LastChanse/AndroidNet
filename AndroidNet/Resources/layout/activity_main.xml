@@ -2,10 +2,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+	android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="30dp"
-	android:background="#FFF">
+	android:background="#FFF"
+	>
 	
 	<!-- Заголовок -->
     <TextView 
@@ -41,19 +42,25 @@
 
 		<!-- Виджет заголовка с подзаголовком -->
 		<SimpleUI.Header
-        android:id="@+id/component1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:headerText="Заголовок"
         app:subheaderText="Подзаголовок"
-        app:image="@drawable/orange_img"
 	    />
 
 		<!-- Виджет заголовка без подзаголовком -->
 		<SimpleUI.Header
-        android:id="@+id/component2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+	    />
+		<!-- Виджет заголовка c кнопкой -->
+		<SimpleUI.Header
+        android:id="@+id/header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+	    app:headerText="Заголовок"
+        app:subheaderText="Подзаголовок"
+        app:image="@drawable/orange_img"
+		app:buttonText="Кнопка"
 	    />
 
 		<!-- Виджет элемента -->
@@ -61,19 +68,13 @@
 		<!-- Виджет элемента с кнопкой закрытия -->
 		
 		<!-- Виджет кнопки -->
-		
+
 		<SimpleUI.SimpleButton
-		android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-		app:onClick="test"
-		app:buttonText="Кнопка с сообщением"
-		
-	    />
-		
-		<SimpleUI.SimpleButton
-		android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-		
+			android:id="@+id/button1"
+			android:clickable="true"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="Кнопка с сообщением"
 	    />
 	</LinearLayout>
 
