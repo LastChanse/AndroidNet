@@ -2,8 +2,4 @@
 <resources>
 	<!-- Тёмная тема -->
 	<color name="background_component">#F6F7F8</color>
-
-
-	<!-- Индикатор текущей темы -->
-	<color name="theme_color">#000</color>
 </resources>

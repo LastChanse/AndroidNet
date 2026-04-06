@@ -8,8 +8,8 @@ namespace AndroidNet
     [Activity(Label = "@string/app_name", MainLauncher = true)]
     public class MainActivity : Activity
     {
-        Header header;
-        Item item;
+        HeaderView header;
+        ItemView item;
         protected override void OnCreate(Bundle? savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -19,13 +19,13 @@ namespace AndroidNet
 
             SetContentView(Resource.Layout.activity_main);
 
-            header = FindViewById<Header>(Resource.Id.header);
+            header = FindViewById<HeaderView>(Resource.Id.header);
             header.SetOnClick(() => { Toast.MakeText(this, "Кнопка заголовка нажата", ToastLength.Short).Show(); });
 
-            item = FindViewById<Item>(Resource.Id.item);
+            item = FindViewById<ItemView>(Resource.Id.item);
             item.SetOnCloseClick(() => { Toast.MakeText(this, "Кнопка элемента нажата", ToastLength.Short).Show(); });
 
-            SimpleButton button = FindViewById<SimpleButton>(Resource.Id.button1);
+            SimpleButtonView button = FindViewById<SimpleButtonView>(Resource.Id.button1);
             button.Touch += (sender, e) =>
             {
                 if (e.Event.Action == MotionEventActions.Up)

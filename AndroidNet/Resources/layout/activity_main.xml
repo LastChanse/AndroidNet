@@ -41,19 +41,19 @@
 		>
 
 		<!-- Виджет заголовка с подзаголовком -->
-		<SimpleUI.Header
+		<SimpleUI.HeaderView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:subheaderText="Подзаголовок"
 	    />
 
 		<!-- Виджет заголовка без подзаголовком -->
-		<SimpleUI.Header
+		<SimpleUI.HeaderView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 	    />
 		<!-- Виджет заголовка c кнопкой -->
-		<SimpleUI.Header
+		<SimpleUI.HeaderView
         android:id="@+id/header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -64,13 +64,13 @@
 	    />
 
 		<!-- Виджет элемента -->
-		<SimpleUI.Item
+		<SimpleUI.ItemView
 			android:clickable="true"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 	    />
 		<!-- Виджет элемента с кнопкой закрытия -->
-		<SimpleUI.Item
+		<SimpleUI.ItemView
 			android:id="@+id/item"
 			android:clickable="true"
 			android:layout_width="match_parent"
@@ -82,7 +82,7 @@
 		
 		<!-- Виджет кнопки -->
 
-		<SimpleUI.SimpleButton
+		<SimpleUI.SimpleButtonView
 			android:id="@+id/button1"
 			android:clickable="true"
 			android:layout_width="match_parent"

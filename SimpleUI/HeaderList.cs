@@ -12,7 +12,7 @@ namespace SimpleUI
         TextView headerTextView;
         TextView subheaderTextView;
         ImageView headerImageView;
-        SimpleButton headerSimpleButton;
+        SimpleButtonView headerSimpleButton;
         RelativeLayout box;
         int elevation = 8;
 
@@ -31,7 +31,7 @@ namespace SimpleUI
             headerTextView = FindViewById<TextView>(Resource.Id.headerText);
             subheaderTextView = FindViewById<TextView>(Resource.Id.subheaderText);
             headerImageView = FindViewById<ImageView>(Resource.Id.headerImage);
-            headerSimpleButton = FindViewById<SimpleButton>(Resource.Id.headerButton);
+            headerSimpleButton = FindViewById<SimpleButtonView>(Resource.Id.headerButton);
             box = FindViewById <RelativeLayout> (Resource.Id.box);
 
             headerSimpleButton.Text = "test";
@@ -76,9 +76,8 @@ namespace SimpleUI
         // Метод управления тенью
         void ShadowController()
         {
-            int themeColor = Context.Resources.GetColor(Resource.Color.theme_color, Context.Theme);
-            if (themeColor < -100) {
-            } else
+            var currentNightMode = UiMode.NightMask & Resources.Configuration.UiMode;
+            if (currentNightMode != UiMode.NightYes)
             {
                 box = FindViewById<RelativeLayout>(Resource.Id.box);
                 box.Elevation = DpToPx(Context, elevation);

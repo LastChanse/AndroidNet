@@ -33,7 +33,7 @@
 				android:text="Subheader"
 				android:textColor="@color/subheader"/>
 
-			<SimpleUI.SimpleButton
+			<SimpleUI.SimpleButtonView
 				android:id="@+id/headerButton"
 				android:layout_width="match_parent"
 				android:layout_height="44dp"

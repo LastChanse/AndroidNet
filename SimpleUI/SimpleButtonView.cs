@@ -3,9 +3,9 @@ using Android.Util;
 
 namespace SimpleUI
 {
-    public class SimpleButton : Button
+    public class SimpleButtonView : Button
     {
-        public SimpleButton(Context? context, IAttributeSet? attrs) : base(context, attrs)
+        public SimpleButtonView(Context? context, IAttributeSet? attrs) : base(context, attrs)
         {
             if (Text != "X") {
                 var padding = (int)Utils.DpToPx(context, 10);
