@@ -47,11 +47,13 @@
         app:subheaderText="Подзаголовок"
 	    />
 
-		<!-- Виджет заголовка без подзаголовком -->
+		<!-- Виджет заголовка без подзаголовка -->
 		<SimpleUI.HeaderView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+		app:subheaderVisible="false"
 	    />
+		
 		<!-- Виджет заголовка c кнопкой -->
 		<SimpleUI.HeaderView
         android:id="@+id/header"
@@ -61,6 +63,7 @@
         app:subheaderText="Подзаголовок"
         app:image="@drawable/orange_img"
 		app:buttonText="Кнопка"
+		app:buttonVisible="true"
 	    />
 
 		<!-- Виджет элемента -->
@@ -78,6 +81,14 @@
 			app:title="Элемент"
 			app:description="Описание"
 			app:closeButtonVisible="true"
+	    />
+		<!-- Виджет заголовка c списком -->
+		<SimpleUI.HeaderListView
+        android:id="@+id/header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+	    app:headerText="Список"
+		app:buttonText="Кнопка"
 	    />
 		
 		<!-- Виджет кнопки -->
