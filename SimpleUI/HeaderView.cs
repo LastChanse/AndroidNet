@@ -80,7 +80,7 @@ namespace SimpleUI
         #endregion
 
         #region Public methods
-        // Метод для задания onClick
+        
         public void SetOnClick(Action action)
         {
             headerSimpleButton.Touch += (sender, e) =>

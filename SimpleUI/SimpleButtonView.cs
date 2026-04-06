@@ -17,7 +17,6 @@ namespace SimpleUI
 
             Touch += (sender, e) =>
             {
-                // Изменение фона при касании кнопки c посощью изменения параметра Selected и background...xml
                 Selected = e.Event.Action == MotionEventActions.Up ? false : true;
                 e.Handled = true;
             };
