@@ -1,14 +1,9 @@
 using Android.Content;
 using Android.Content.Res;
-using Android.Graphics;
-using Android.Graphics.Drawables;
 using Android.Runtime;
 using Android.Util;
 using Android.Views;
-using AndroidX.Core.Content;
 using AndroidX.RecyclerView.Widget;
-using static Android.Icu.Text.CaseMap;
-using static Android.Util.EventLogTags;
 using static SimpleUI.Utils;
 
 
