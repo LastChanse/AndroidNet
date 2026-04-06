@@ -96,29 +96,19 @@ namespace SimpleUI
         {
             LayoutInflater.From(Context).Inflate(Resource.Layout.header_layout, this, true);
 
-            // Получаем элементы макета
             headerTextView = FindViewById<TextView>(Resource.Id.headerText);
             subheaderTextView = FindViewById<TextView>(Resource.Id.subheaderText);
             headerImageView = FindViewById<ImageView>(Resource.Id.headerImage);
             headerSimpleButton = FindViewById<SimpleButtonView>(Resource.Id.headerButton);
             box = FindViewById<RelativeLayout>(Resource.Id.box);
 
-            headerSimpleButton.Text = "test";
+            LoadAttrsFromXML(attrs);
 
-            // Загрузка атрибутов
-            LoadFromXML(attrs);
-
-            // Выбираем макет
-            ChoseLayout();
-
-            // Тень при белой теме
             ShadowController();
 
         }
 
-        // Метод загрузки атрибутов из xaml
-        void LoadFromXML(IAttributeSet? attrs) {
-            // Получаем кастомные атрибуты
+        void LoadAttrsFromXML(IAttributeSet? attrs) {
             var customAttrs = Context.Theme.ObtainStyledAttributes(attrs, Resource.Styleable.Header, 0, 0);
             headerText = customAttrs.GetString(Resource.Styleable.Header_headerText);
             subheaderText = customAttrs.GetString(Resource.Styleable.Header_subheaderText);
@@ -128,7 +118,6 @@ namespace SimpleUI
             buttonVisible = customAttrs.GetBoolean(Resource.Styleable.Header_subheaderVisible, false);
         }
 
-        // Метод управления тенью
         void ShadowController()
         {
             var currentNightMode = UiMode.NightMask & Resources.Configuration.UiMode;
@@ -139,57 +128,7 @@ namespace SimpleUI
             }
         }
 
-        // Метод выбора макета в зависимости от полученых атрибутов
-        void ChoseLayout()
-        {
-            if (subheaderVisible == false)
-                HeaderMinimal();
-            else if (buttonVisible == false)
-                HeaderStandart();
-            else
-                HeaderMaximal();
-        }
-
-        // Метод отрисовки макета с заголовком, подзаголовком и изображением
-        void HeaderStandart()
-        {
-            // Применяем макет
-            var lp = (RelativeLayout.LayoutParams)box.LayoutParameters;
-            lp.Height = ((int)DpToPx(Context, 81));
-            box.LayoutParameters = lp;
-
-            headerTextView.LayoutParameters = new RelativeLayout.LayoutParams(headerTextView.LayoutParameters)
-            {
-                TopMargin = (int)DpToPx(Context, 16f),
-                LeftMargin = (int)DpToPx(Context, 20f)
-            };
-        }
-
-        // Метод отрисовки макета с заголовком и изображением
-        void HeaderMinimal()
-        {
-            // Применяем макет
-            var lp = (RelativeLayout.LayoutParams)box.LayoutParameters;
-            lp.Height = ((int)DpToPx(Context, 72));
-            box.LayoutParameters = lp;
-
-            headerTextView.LayoutParameters = new RelativeLayout.LayoutParams(headerTextView.LayoutParameters)
-            {
-                TopMargin = (int)DpToPx(Context, 24.5f),
-                LeftMargin = (int)DpToPx(Context, 20f)
-            };
-        }
-
-        // Метод отрисовки макета с заголовком, подзаголовком, изображением и кнопкой
-        void HeaderMaximal()
-        {
-            // Применяем макет
-            box.LayoutParameters = new RelativeLayout.LayoutParams(box.LayoutParameters)
-            {
-                Height = ((int)DpToPx(Context, 141))
-            };
-
-        }
+        
         #endregion
     }
 }

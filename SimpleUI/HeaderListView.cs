@@ -1,9 +1,14 @@
 using Android.Content;
 using Android.Content.Res;
+using Android.Graphics;
+using Android.Graphics.Drawables;
 using Android.Runtime;
-using AndroidX.RecyclerView.Widget;
 using Android.Util;
 using Android.Views;
+using AndroidX.Core.Content;
+using AndroidX.RecyclerView.Widget;
+using static Android.Icu.Text.CaseMap;
+using static Android.Util.EventLogTags;
 using static SimpleUI.Utils;
 
 
@@ -12,15 +17,18 @@ namespace SimpleUI
     public class HeaderListView : RelativeLayout
     {
         #region Fieds
+
         TextView headerTextView;
         Button headerAddButton;
         SimpleButtonView headerSimpleButton;
         RelativeLayout box;
         RecyclerView listItems;
         int elevation = 8;
+
         #endregion
 
         #region Properties
+
         public string headerText
         {
             get => headerTextView.Text;
@@ -44,11 +52,13 @@ namespace SimpleUI
         public bool buttonAddVisible
         {
             get => headerAddButton.Visibility == ViewStates.Visible;
-            set => headerAddButton.Visibility = value == true ? ViewStates.Visible : ViewStates.Gone;
+            set => headerAddButton.Visibility = value == false ? ViewStates.Gone : ViewStates.Visible;
         }
+
         #endregion
 
         #region ctor
+
         public HeaderListView(Context? context, IAttributeSet? attrs) : base(context, attrs)
         {
             Initialize(attrs);
@@ -73,10 +83,11 @@ namespace SimpleUI
         {
             Initialize(null);
         }
+
         #endregion
 
         #region Public methods
-        // Метод для задания onClick
+
         public void SetOnClick(Action action)
         {
             headerSimpleButton.Touch += (sender, e) =>
@@ -85,24 +96,26 @@ namespace SimpleUI
                     action();
             };
         }
+
         #endregion
 
         #region Private methods
+
         void Initialize(IAttributeSet? attrs)
         {
             LayoutInflater.From(Context).Inflate(Resource.Layout.header_box_layout, this, true);
 
-            // Получаем элементы макета
             headerTextView = FindViewById<TextView>(Resource.Id.headerText);
             headerAddButton = FindViewById<Button>(Resource.Id.addButton);
             headerSimpleButton = FindViewById<SimpleButtonView>(Resource.Id.headerButton);
             listItems = FindViewById<RecyclerView>(Resource.Id.listItems);
             box = FindViewById<RelativeLayout>(Resource.Id.box);
 
-            headerSimpleButton.Text = "test";
+            var itemService = new ItemService();
+            listItems.SetLayoutManager(new LinearLayoutManager(Context));
+            listItems.SetAdapter(new ItemAdapter(itemService.Items));
 
-            // Загрузка атрибутов
-            LoadFromXML(attrs);
+            LoadAttrsFromXML(attrs);
 
             if (buttonVisible)
             {
@@ -113,22 +126,32 @@ namespace SimpleUI
                 headerSimpleButton.Visibility = ViewStates.Gone;
             }
 
-            // Тень при белой теме
+            headerAddButton.Touch += (sender, e) =>
+            {
+                var color_clicked = Context.Resources.GetColor(Resource.Color.button_clicked, Context.Theme);
+                var color = Context.Resources.GetColor(Resource.Color.button, Context.Theme);
+
+                headerAddButton.SetTextColor(
+                    e.Event.Action == MotionEventActions.Up?
+                    color : color_clicked
+                    );
+                
+                e.Handled = true;
+            };
+
             ShadowController();
         }
 
-        // Метод загрузки атрибутов из xaml
-        void LoadFromXML(IAttributeSet? attrs) {
-            // Получаем кастомные атрибуты
-            var customAttrs = Context.Theme.ObtainStyledAttributes(attrs, Resource.Styleable.Header, 0, 0);
-            headerText = customAttrs.GetString(Resource.Styleable.Header_headerText);
+        void LoadAttrsFromXML(IAttributeSet? attrs) {
+            var customAttrs = Context.Theme.ObtainStyledAttributes(attrs, Resource.Styleable.HeaderList, 0, 0);
+            
+            headerText = customAttrs.GetString(Resource.Styleable.HeaderList_headerText);
             buttonVisible = customAttrs.GetBoolean(Resource.Styleable.HeaderList_buttonVisible, false);
-            buttonText = customAttrs.GetString(Resource.Styleable.Header_buttonText);
-            buttonAddVisible = customAttrs.GetBoolean(Resource.Styleable.HeaderList_buttonVisible, false);
-            buttonAddText = customAttrs.GetString(Resource.Styleable.Header_buttonText);
+            buttonText = customAttrs.GetString(Resource.Styleable.HeaderList_buttonText);
+            buttonAddVisible = customAttrs.GetBoolean(Resource.Styleable.HeaderList_buttonVisible, true);
+            buttonAddText = customAttrs.GetString(Resource.Styleable.HeaderList_buttonAddText);
         }
 
-        // Метод управления тенью
         void ShadowController()
         {
             var currentNightMode = UiMode.NightMask & Resources.Configuration.UiMode;
@@ -138,6 +161,7 @@ namespace SimpleUI
                 box.Elevation = DpToPx(Context, elevation);
             }
         }
+
         #endregion
     }
 }

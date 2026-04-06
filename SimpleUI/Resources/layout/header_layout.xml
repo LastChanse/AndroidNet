@@ -3,38 +3,44 @@
 					xmlns:app="http://schemas.android.com/apk/res-auto"
 					xmlns:tools="http://schemas.android.com/tools"
 					android:id="@+id/box"
-					android:layout_width="328dp"
-					android:layout_height="81dp"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
 					android:layout_margin="16dp"
+					android:paddingBottom="16dp"
+					android:paddingTop="16dp"
 					android:background="@drawable/background_component">
 			
-			<!-- Заголовок -->
-			<TextView
-				android:id="@+id/headerText"
+			<LinearLayout
 				android:layout_width="236dp"
-				android:layout_height="23dp"
-				android:layout_marginLeft="20dp"
-				android:layout_marginTop="16dp"
-				android:textSize="20sp"
-				android:textFontWeight="700"
-				android:fontFamily="Roboto"
-				android:text="Header"
-				android:textColor="@color/header"/>
+				android:layout_height="wrap_content"
+				android:orientation="vertical">
+				<!-- Заголовок -->
+				<TextView
+					android:id="@+id/headerText"
+					android:layout_width="match_parent"
+					android:layout_centerVertical="true"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="20dp"
+					android:textSize="20sp"
+					android:textFontWeight="700"
+					android:fontFamily="Roboto"
+					android:text="Header"
+					android:textColor="@color/header"/>
 			
-			<!-- Подзаголовок-->
-			<TextView
-				android:id="@+id/subheaderText"
-				android:layout_width="236dp"
-				android:layout_height="16dp"
-				android:layout_marginLeft="20dp"
-				android:layout_below="@+id/headerText"
-				android:layout_marginTop="8dp"
-				android:textSize="14sp"
-				android:textFontWeight="400"
-				android:fontFamily="Roboto"
-				android:text="Subheader"
-				android:textColor="@color/subheader"/>
-
+				<!-- Подзаголовок-->
+				<TextView
+					android:id="@+id/subheaderText"
+					android:layout_width="match_parent"
+					android:layout_height="16dp"
+					android:layout_marginLeft="20dp"
+					android:layout_below="@+id/headerText"
+					android:layout_marginTop="8dp"
+					android:textSize="14sp"
+					android:textFontWeight="400"
+					android:fontFamily="Roboto"
+					android:text="Subheader"
+					android:textColor="@color/subheader"/>
+			</LinearLayout>
 			<!-- Кнопка -->
 			<SimpleUI.SimpleButtonView
 				android:id="@+id/headerButton"
@@ -53,6 +59,7 @@
 				android:layout_height="40dp"
 				android:layout_marginTop="16dp"
 				android:layout_marginRight="16dp"
+				android:layout_centerVertical="true"
 				android:layout_alignParentRight="True"
 				android:src="@drawable/default_img"/>
 		</RelativeLayout>

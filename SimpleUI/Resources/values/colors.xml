@@ -9,6 +9,7 @@
 
 	<!-- Компонент кнопки -->
 	<color name="button">#428BF9</color>
+	<color name="button_clicked">#8eb9fb</color>
 	<color name="background_button_component">#08001024</color>
 	<color name="background_button_component_hover">#0F001024</color>
 

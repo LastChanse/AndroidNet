@@ -1,5 +1,6 @@
 ﻿using Android.Content;
 using Android.Util;
+using Android.Views;
 
 namespace SimpleUI
 {
@@ -14,11 +15,10 @@ namespace SimpleUI
             }
             SetBackgroundResource(Resource.Drawable.background_button_component);
 
-
             Touch += (sender, e) =>
             {
                 // Изменение фона при касании кнопки c посощью изменения параметра Selected и background...xml
-                Selected = Selected ? false : true;
+                Selected = e.Event.Action == MotionEventActions.Up ? false : true;
                 e.Handled = true;
             };
         }

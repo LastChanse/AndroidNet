@@ -8,7 +8,6 @@
 	android:background="#FFF"
 	>
 	
-	<!-- Заголовок -->
     <TextView 
         android:id="@+id/title"
         android:layout_width="wrap_content"
@@ -20,7 +19,6 @@
         android:layout_marginBottom="16dp"
     />
 	
-	<!-- Линия -->
 	<View
         android:id="@+id/title_line"
 		android:layout_width="match_parent"
@@ -29,34 +27,29 @@
 		android:background="#000"
         android:layout_marginBottom="10dp"/>
 	
-	<!-- Демонстрация библиотеки -->
 	<LinearLayout
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
 	    android:layout_below="@+id/title_line"
 		android:orientation="vertical"
-		android:layout_marginLeft="16dp"
 		android:gravity="center"
 		android:clipChildren="false"
 		>
 
-		<!-- Виджет заголовка с подзаголовком -->
 		<SimpleUI.HeaderView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:subheaderText="Подзаголовок"
 	    />
 
-		<!-- Виджет заголовка без подзаголовка -->
 		<SimpleUI.HeaderView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 		app:subheaderVisible="false"
 	    />
 		
-		<!-- Виджет заголовка c кнопкой -->
 		<SimpleUI.HeaderView
-        android:id="@+id/header"
+        android:id="@+id/header_component"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 	    app:headerText="Заголовок"
@@ -66,32 +59,34 @@
 		app:buttonVisible="true"
 	    />
 
-		<!-- Виджет элемента -->
 		<SimpleUI.ItemView
 			android:clickable="true"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:layout_gravity="center"
 	    />
-		<!-- Виджет элемента с кнопкой закрытия -->
 		<SimpleUI.ItemView
 			android:id="@+id/item"
 			android:clickable="true"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:layout_gravity="center"
 			app:title="Элемент"
 			app:description="Описание"
 			app:closeButtonVisible="true"
 	    />
-		<!-- Виджет заголовка c списком -->
+		
 		<SimpleUI.HeaderListView
-        android:id="@+id/header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/header_list_component"
+		android:layout_width="match_parent"
+        android:layout_height="match_parent"
 	    app:headerText="Список"
+		app:buttonAddText="Кнопка"
 		app:buttonText="Кнопка"
+		app:buttonVisible="true"
+		
 	    />
 		
-		<!-- Виджет кнопки -->
 
 		<SimpleUI.SimpleButtonView
 			android:id="@+id/button1"

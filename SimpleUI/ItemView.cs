@@ -16,7 +16,6 @@ namespace SimpleUI
         RelativeLayout box;
         int elevation = 8;
 
-        // Атрибуты
         String title;
         String description;
         int icon = Resource.Drawable.default_img;
@@ -26,21 +25,17 @@ namespace SimpleUI
         {
             LayoutInflater.From(context).Inflate(Resource.Layout.item_layout, this, true);
             
-            // Получаем элементы макета
             titleTextView = FindViewById<TextView>(Resource.Id.titleText);
             descriptionTextView = FindViewById<TextView>(Resource.Id.descriptionText);
             iconImageView = FindViewById<ImageView>(Resource.Id.icon);
             closeButton = FindViewById<Button>(Resource.Id.closeButton);
             box = FindViewById <RelativeLayout> (Resource.Id.box);
 
-            // Загрузка атрибутов
-            LoadFromXML(attrs);
+            LoadAttrsFromXML(attrs);
 
-            // Тень при белой теме
             ShadowController();
         }
 
-        // Метод для задания onClick
         public void SetOnCloseClick(Action action)
         {
             closeButton.Touch += (sender, e) =>
@@ -50,23 +45,19 @@ namespace SimpleUI
             };
         }
 
-        // Метод загрузки атрибутов из xaml
-        void LoadFromXML(IAttributeSet? attrs) {
-            // Получаем кастомные атрибуты
+        void LoadAttrsFromXML(IAttributeSet? attrs) {
             var customAttrs = Context.Theme.ObtainStyledAttributes(attrs, Resource.Styleable.Item, 0, 0);
             title = customAttrs.GetString(Resource.Styleable.Item_title);
             description = customAttrs.GetString(Resource.Styleable.Item_description);
             icon = customAttrs.GetResourceId(Resource.Styleable.Item_icon, Resource.Drawable.default_img);
             closeButtonVisible = customAttrs.GetBoolean(Resource.Styleable.Item_closeButtonVisible, false);
 
-            // Применяем атрибуты
             titleTextView.Text = title == null ? "Title" : title;
             descriptionTextView.Text = description == null ? "Description" : description;
             iconImageView.SetImageResource(icon);
             closeButton.Visibility = closeButtonVisible == true ? ViewStates.Visible : ViewStates.Gone;
         }
 
-        // Метод управления тенью
         void ShadowController()
         {
             var currentNightMode = UiMode.NightMask & Resources.Configuration.UiMode;
