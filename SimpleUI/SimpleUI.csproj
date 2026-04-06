@@ -6,4 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <IsTrimmable>true</IsTrimmable>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Xamarin.AndroidX.RecyclerView" Version="1.4.0.5" />
+  </ItemGroup>
 </Project>

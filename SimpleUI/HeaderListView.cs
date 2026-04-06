@@ -1,5 +1,7 @@
 using Android.Content;
 using Android.Content.Res;
+using Android.Runtime;
+using AndroidX.RecyclerView.Widget;
 using Android.Util;
 using Android.Views;
 using static SimpleUI.Utils;
@@ -9,31 +11,93 @@ namespace SimpleUI
 {
     public class HeaderListView : RelativeLayout
     {
+        #region Fieds
         TextView headerTextView;
         Button headerAddButton;
         SimpleButtonView headerSimpleButton;
         RelativeLayout box;
+        RecyclerView listItems;
         int elevation = 8;
+        #endregion
 
-        // Атрибуты
-        String headerText;
-        String subheaderText;
-        int image = Resource.Drawable.default_img;
-        String buttonText;
-        bool buttonVisible;
-        String buttonAddText;
-        bool buttonAddVisible;
+        #region Properties
+        public string headerText
+        {
+            get => headerTextView.Text;
+            set => headerTextView.Text = value == null ? "Header" : value;
+        }
+        public string buttonText
+        {
+            get => headerSimpleButton.Text;
+            set => headerSimpleButton.Text = value == null ? "Button" : value;
+        }
+        public bool buttonVisible
+        {
+            get => headerSimpleButton.Visibility == ViewStates.Visible;
+            set => headerSimpleButton.Visibility = value == true ? ViewStates.Visible : ViewStates.Gone;
+        }
+        public string buttonAddText
+        {
+            get => headerAddButton.Text;
+            set => headerAddButton.Text = value == null ? "Button" : value;
+        }
+        public bool buttonAddVisible
+        {
+            get => headerAddButton.Visibility == ViewStates.Visible;
+            set => headerAddButton.Visibility = value == true ? ViewStates.Visible : ViewStates.Gone;
+        }
+        #endregion
 
+        #region ctor
         public HeaderListView(Context? context, IAttributeSet? attrs) : base(context, attrs)
         {
-            // Контекст сохраняем
-            LayoutInflater.From(context).Inflate(Resource.Layout.header_box_layout, this, true);
-            
+            Initialize(attrs);
+        }
+
+        protected HeaderListView(nint javaReference, JniHandleOwnership transfer) : base(javaReference, transfer)
+        {
+            Initialize(null);
+        }
+
+        public HeaderListView(Context? context, IAttributeSet? attrs, int defStyleAttr, int defStyleRes) : base(context, attrs, defStyleAttr, defStyleRes)
+        {
+            Initialize(attrs);
+        }
+
+        public HeaderListView(Context? context, IAttributeSet? attrs, int defStyleAttr) : base(context, attrs, defStyleAttr)
+        {
+            Initialize(attrs);
+        }
+
+        public HeaderListView(Context? context) : base(context)
+        {
+            Initialize(null);
+        }
+        #endregion
+
+        #region Public methods
+        // Метод для задания onClick
+        public void SetOnClick(Action action)
+        {
+            headerSimpleButton.Touch += (sender, e) =>
+            {
+                if (e.Event.Action == MotionEventActions.Up)
+                    action();
+            };
+        }
+        #endregion
+
+        #region Private methods
+        void Initialize(IAttributeSet? attrs)
+        {
+            LayoutInflater.From(Context).Inflate(Resource.Layout.header_box_layout, this, true);
+
             // Получаем элементы макета
             headerTextView = FindViewById<TextView>(Resource.Id.headerText);
             headerAddButton = FindViewById<Button>(Resource.Id.addButton);
             headerSimpleButton = FindViewById<SimpleButtonView>(Resource.Id.headerButton);
-            box = FindViewById <RelativeLayout> (Resource.Id.box);
+            listItems = FindViewById<RecyclerView>(Resource.Id.listItems);
+            box = FindViewById<RelativeLayout>(Resource.Id.box);
 
             headerSimpleButton.Text = "test";
 
@@ -53,16 +117,6 @@ namespace SimpleUI
             ShadowController();
         }
 
-        // Метод для задания onClick
-        public void SetOnClick(Action action)
-        {
-            headerSimpleButton.Touch += (sender, e) =>
-            {
-                if (e.Event.Action == MotionEventActions.Up)
-                    action();//Toast.MakeText(this, "Кнопка нажата", ToastLength.Short).Show();
-            };
-        }
-
         // Метод загрузки атрибутов из xaml
         void LoadFromXML(IAttributeSet? attrs) {
             // Получаем кастомные атрибуты
@@ -72,11 +126,6 @@ namespace SimpleUI
             buttonText = customAttrs.GetString(Resource.Styleable.Header_buttonText);
             buttonAddVisible = customAttrs.GetBoolean(Resource.Styleable.HeaderList_buttonVisible, false);
             buttonAddText = customAttrs.GetString(Resource.Styleable.Header_buttonText);
-
-            // Применяем атрибуты
-            headerTextView.Text = headerText == null ? "Header" : headerText;
-            headerSimpleButton.Text = buttonText == null ? "Button" : buttonText;
-            headerAddButton.Text = buttonAddText == null ? "Button" : buttonAddText;
         }
 
         // Метод управления тенью
@@ -89,5 +138,6 @@ namespace SimpleUI
                 box.Elevation = DpToPx(Context, elevation);
             }
         }
+        #endregion
     }
 }

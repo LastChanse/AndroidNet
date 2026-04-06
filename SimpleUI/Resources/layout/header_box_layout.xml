@@ -29,7 +29,10 @@
 					android:layout_alignParentTop="True"
 					android:background="#0000"
 					android:textColor="@color/button"/>
-
+		<androidx.recyclerview.widget.RecyclerView
+					android:id="@+id/listItems"
+			android:layout_width="40dp"
+				android:layout_height="200dp"/>
 			<SimpleUI.SimpleButtonView
 				android:id="@+id/headerButton"
 				android:layout_width="match_parent"

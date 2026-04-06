@@ -3,9 +3,6 @@ using Android.Content.Res;
 using Android.Runtime;
 using Android.Util;
 using Android.Views;
-using Java.Util;
-using Org.W3c.Dom;
-using System.Security.Cryptography.X509Certificates;
 using static SimpleUI.Utils;
 
 
@@ -89,7 +86,7 @@ namespace SimpleUI
             headerSimpleButton.Touch += (sender, e) =>
             {
                 if (e.Event.Action == MotionEventActions.Up)
-                    action();//Toast.MakeText(this, "Кнопка нажата", ToastLength.Short).Show();
+                    action();
             };
         }
         #endregion
@@ -97,7 +94,6 @@ namespace SimpleUI
         #region Private methods
         void Initialize(IAttributeSet? attrs)
         {
-            // Контекст сохраняем
             LayoutInflater.From(Context).Inflate(Resource.Layout.header_layout, this, true);
 
             // Получаем элементы макета
