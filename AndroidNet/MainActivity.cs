@@ -9,6 +9,7 @@ namespace AndroidNet
     public class MainActivity : Activity
     {
         Header header;
+        Item item;
         protected override void OnCreate(Bundle? savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -20,6 +21,9 @@ namespace AndroidNet
 
             header = FindViewById<Header>(Resource.Id.header);
             header.SetOnClick(() => { Toast.MakeText(this, "Кнопка заголовка нажата", ToastLength.Short).Show(); });
+
+            item = FindViewById<Item>(Resource.Id.item);
+            item.SetOnCloseClick(() => { Toast.MakeText(this, "Кнопка элемента нажата", ToastLength.Short).Show(); });
 
             SimpleButton button = FindViewById<SimpleButton>(Resource.Id.button1);
             button.Touch += (sender, e) =>

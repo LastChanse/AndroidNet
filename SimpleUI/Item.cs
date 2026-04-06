@@ -11,7 +11,7 @@ namespace SimpleUI
         TextView titleTextView;
         TextView descriptionTextView;
         ImageView iconImageView;
-        SimpleButton closeSimpleButton;
+        Button closeSimpleButton;
         RelativeLayout box;
         int elevation = 8;
 
@@ -23,14 +23,13 @@ namespace SimpleUI
 
         public Item(Context? context, IAttributeSet? attrs) : base(context, attrs)
         {
-            // Контекст сохраняем
-            LayoutInflater.From(context).Inflate(Resource.Layout.title_layout, this, true);
+            LayoutInflater.From(context).Inflate(Resource.Layout.item_layout, this, true);
             
             // Получаем элементы макета
             titleTextView = FindViewById<TextView>(Resource.Id.titleText);
             descriptionTextView = FindViewById<TextView>(Resource.Id.descriptionText);
             iconImageView = FindViewById<ImageView>(Resource.Id.icon);
-            closeSimpleButton = FindViewById<SimpleButton>(Resource.Id.closeButton);
+            closeSimpleButton = FindViewById<Button>(Resource.Id.closeButton);
             box = FindViewById <RelativeLayout> (Resource.Id.box);
 
             // Загрузка атрибутов
@@ -46,7 +45,7 @@ namespace SimpleUI
             closeSimpleButton.Touch += (sender, e) =>
             {
                 if (e.Event.Action == MotionEventActions.Up)
-                    action();//Toast.MakeText(this, "Кнопка нажата", ToastLength.Short).Show();
+                    Toast.MakeText(Context, "Кнопка нажата", ToastLength.Short).Show();
             };
         }
 

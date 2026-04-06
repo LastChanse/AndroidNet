@@ -71,7 +71,7 @@
 	    />
 		<!-- Виджет элемента с кнопкой закрытия -->
 		<SimpleUI.Item
-			android:id="@+id/title"
+			android:id="@+id/item"
 			android:clickable="true"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"

@@ -4,9 +4,8 @@
 					xmlns:tools="http://schemas.android.com/tools"
 					android:id="@+id/box"
 					android:layout_width="328dp"
-					android:layout_height="81dp"
+					android:layout_height="80dp"
 					android:layout_margin="16dp"
-					android:padding="20dp"
 					android:background="@drawable/background_component"
 					android:clipChildren="false">
 
@@ -14,14 +13,19 @@
 				android:id="@+id/icon"
 				android:layout_width="40dp"
 				android:layout_height="40dp"
+				android:layout_marginLeft="20dp"
+				android:layout_marginTop="20dp"
 				android:layout_alignParentLeft="True"
 				android:src="@drawable/default_img"/>
 			<LinearLayout
+				android:id="@+id/textBox"
 				android:layout_width="match_parent"
-				android:layout_height="40dp"
+				android:layout_height="56dp"
 				android:layout_marginLeft="16dp"
+				android:layout_marginTop="12dp"
 				android:layout_toRightOf="@+id/icon"
 				android:orientation="vertical"
+				android:gravity="center"
 				>
 				<TextView
 					android:id="@+id/titleText"
@@ -43,14 +47,14 @@
 					android:textColor="@color/description"/>
 
 			</LinearLayout>
-		<SimpleUI.SimpleButton
-			android:id="@+id/closeButton"
+			<Button
+				android:id="@+id/closeButton"
 					android:layout_width="24dp"
 					android:layout_height="24dp"
+					android:layout_marginRight="16dp"
+					android:layout_marginTop="16dp"
 					android:layout_alignParentRight="True"
 					android:layout_alignParentTop="True"
-					android:text="X"
-					android:textColor="#9299A2"
-					android:background="@color/background_button_component"/>
+					android:background="@drawable/button_close"/>
 
 	</RelativeLayout>
