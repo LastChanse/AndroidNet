@@ -17,9 +17,5 @@
 	<color name="description">#9299A2</color>
 
 	<!-- Компонент коробки с заголовком -->
-	
-	
-	<!-- Индикатор текущей темы -->
-	<color name="theme_color">#FFF</color>
 
 </resources>

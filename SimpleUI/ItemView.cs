@@ -1,4 +1,5 @@
 using Android.Content;
+using Android.Content.Res;
 using Android.Util;
 using Android.Views;
 using static SimpleUI.Utils;
@@ -6,7 +7,7 @@ using static SimpleUI.Utils;
 
 namespace SimpleUI
 {
-    public class Item : RelativeLayout
+    public class ItemView : RelativeLayout
     {
         TextView titleTextView;
         TextView descriptionTextView;
@@ -21,7 +22,7 @@ namespace SimpleUI
         int icon = Resource.Drawable.default_img;
         bool closeButtonVisible;
 
-        public Item(Context? context, IAttributeSet? attrs) : base(context, attrs)
+        public ItemView(Context? context, IAttributeSet? attrs) : base(context, attrs)
         {
             LayoutInflater.From(context).Inflate(Resource.Layout.item_layout, this, true);
             
@@ -68,9 +69,8 @@ namespace SimpleUI
         // Метод управления тенью
         void ShadowController()
         {
-            int themeColor = Context.Resources.GetColor(Resource.Color.theme_color, Context.Theme);
-            if (themeColor < -100) {
-            } else
+            var currentNightMode = UiMode.NightMask & Resources.Configuration.UiMode;
+            if (currentNightMode != UiMode.NightYes)
             {
                 box = FindViewById<RelativeLayout>(Resource.Id.box);
                 box.Elevation = DpToPx(Context, elevation);
