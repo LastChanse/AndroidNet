@@ -23,13 +23,15 @@
 
 		<SimpleUI.HeaderView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:subheaderText="Подзаголовок"
+		android:layout_height="wrap_content"
+		app:headerText="Привет мир!"
+        app:subheaderText="Привет всем!"
 	    />
 
 		<SimpleUI.HeaderView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+		android:layout_height="wrap_content"
+		app:headerText="Без подписи"
 		app:subheaderVisible="false"
 	    />
 		
@@ -62,20 +64,48 @@
 	    />
 
 		<SimpleUI.HeaderListView
-        android:id="@+id/header_list_component1"
-		android:layout_width="match_parent"
-        android:layout_height="364dp"
-	    app:headerText="Список"
-		app:buttonAddText="Добавить"
+			android:id="@+id/header_list_component1"
+			android:layout_width="match_parent"
+			android:layout_height="395dp"
+			app:headerText="Список"
+			app:buttonAddText="Добавить"
 			app:buttonText="Кнопка"
 			app:buttonVisible="true"
 	    />
 
+
 		<SimpleUI.HeaderListView
-        android:id="@+id/header_list_component2"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		app:cardItemMode="true"
+			android:id="@+id/header_list_component11"
+			android:layout_width="match_parent"
+			android:layout_height="340dp"
+			app:headerText="Список"
+			app:buttonAddText="Добавить"
+			app:buttonText="Кнопка"
+			app:buttonVisible="false"
+	    />
+
+
+		<SimpleUI.HeaderListView
+			android:id="@+id/header_list_component2"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			app:headerText="Список"
+			app:buttonAddText="Добавить"
+			app:buttonText="Кнопка"
+			app:buttonVisible="true"
+			app:cardItemMode="true"
+	    />
+
+
+		<SimpleUI.HeaderListView
+			android:id="@+id/header_list_component22"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			app:headerText="Список"
+			app:buttonAddText="Добавить"
+			app:buttonText="Кнопка"
+			app:buttonVisible="false"
+			app:cardItemMode="true"
 	    />
 		
 
@@ -85,6 +115,7 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:text="Кнопка с сообщением"
+			android:layout_margin="16dp"
 	    />
 	</LinearLayout>
 	</ScrollView>

@@ -1,5 +1,4 @@
-﻿using Android.Content;
-using Android.Views;
+﻿using Android.Views;
 using AndroidX.RecyclerView.Widget;
 
 namespace SimpleUI
@@ -27,6 +26,10 @@ namespace SimpleUI
                 newHolder.SetIcon(localDataSet[position].icon);
                 newHolder.SetCloseButtonOnClick(localDataSet[position].closeButtonOnClick);
                 newHolder.SetCloseButtonVisibility(localDataSet[position].closeButtonVisible);
+                if (localCardMode)
+                {
+                    newHolder.makeCardStyles();
+                }
             }
         }
 

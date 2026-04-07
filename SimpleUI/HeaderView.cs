@@ -16,6 +16,7 @@ namespace SimpleUI
         ImageView headerImageView;
         SimpleButtonView headerSimpleButton;
         RelativeLayout box;
+        RelativeLayout headerBox;
         int elevation = 8;
         #endregion
 
@@ -101,8 +102,34 @@ namespace SimpleUI
             headerImageView = FindViewById<ImageView>(Resource.Id.headerImage);
             headerSimpleButton = FindViewById<SimpleButtonView>(Resource.Id.headerButton);
             box = FindViewById<RelativeLayout>(Resource.Id.box);
+            var headerBox = FindViewById<LinearLayout>(Resource.Id.headerBox);
 
             LoadAttrsFromXML(attrs);
+
+            if (headerSimpleButton.Visibility == ViewStates.Visible)
+            {
+                var lpText = (RelativeLayout.LayoutParams)headerBox.LayoutParameters;
+                lpText.RemoveRule(LayoutRules.CenterVertical);
+                lpText.AddRule(LayoutRules.AlignParentTop);
+                headerBox.LayoutParameters = lpText;
+
+                var lpImage = (RelativeLayout.LayoutParams)headerImageView.LayoutParameters;
+                lpImage.RemoveRule(LayoutRules.CenterVertical);
+                lpImage.AddRule(LayoutRules.AlignParentTop);
+                headerImageView.LayoutParameters = lpImage;
+            }
+            else
+            {
+                var lpText = (RelativeLayout.LayoutParams)headerBox.LayoutParameters;
+                lpText.RemoveRule(LayoutRules.AlignParentTop);
+                lpText.AddRule(LayoutRules.CenterVertical);
+                headerBox.LayoutParameters = lpText;
+
+                var lpImage = (RelativeLayout.LayoutParams)headerImageView.LayoutParameters;
+                lpImage.RemoveRule(LayoutRules.AlignParentTop);
+                lpImage.AddRule(LayoutRules.CenterVertical);
+                headerImageView.LayoutParameters = lpImage;
+            }
 
             ShadowController();
 
@@ -115,7 +142,7 @@ namespace SimpleUI
             image = customAttrs.GetResourceId(Resource.Styleable.Header_image, Resource.Drawable.default_img);
             buttonText = customAttrs.GetString(Resource.Styleable.Header_buttonText);
             subheaderVisible = customAttrs.GetBoolean(Resource.Styleable.Header_subheaderVisible, true);
-            buttonVisible = customAttrs.GetBoolean(Resource.Styleable.Header_subheaderVisible, false);
+            buttonVisible = customAttrs.GetBoolean(Resource.Styleable.Header_buttonVisible, false);
         }
 
         void ShadowController()

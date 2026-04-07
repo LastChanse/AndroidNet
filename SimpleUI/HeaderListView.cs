@@ -141,10 +141,29 @@ namespace SimpleUI
             itemsListView = FindViewById<RecyclerView>(Resource.Id.listItems);
             box = FindViewById<RelativeLayout>(Resource.Id.box);
 
-
             itemsListView.SetLayoutManager(new LinearLayoutManager(Context));
 
             LoadAttrsFromXML(attrs);
+            
+            var listParams = (RelativeLayout.LayoutParams)itemsListView.LayoutParameters;
+            var buttonParams = (RelativeLayout.LayoutParams)headerSimpleButton.LayoutParameters;
+            if (cardItemModeValue)
+            {
+                listParams.RemoveRule(LayoutRules.Above);
+                listParams.Height = RelativeLayout.LayoutParams.WrapContent;
+
+                buttonParams.AddRule(LayoutRules.Below, Resource.Id.listItems);
+            }
+            else
+            {
+                listParams.AddRule(LayoutRules.Above, Resource.Id.headerButton);
+                listParams.Height = RelativeLayout.LayoutParams.MatchParent;
+
+                buttonParams.RemoveRule(LayoutRules.Below);
+            }
+
+            itemsListView.LayoutParameters = listParams;
+            headerSimpleButton.LayoutParameters = buttonParams;
 
             if (buttonVisible)
             {

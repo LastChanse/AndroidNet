@@ -1,4 +1,6 @@
-﻿using Android.Graphics.Drawables;
+﻿using Android.Content;
+using Android.Graphics;
+using Android.Graphics.Drawables;
 using Android.Views;
 using AndroidX.RecyclerView.Widget;
 using static Android.Icu.Text.Transliterator;
@@ -12,6 +14,7 @@ namespace SimpleUI
         TextView descriptionTextView;
         ImageView iconImageView;
         Button closeButton;
+        Context context;
 
         public ItemViewHolder(View itemView) : base(itemView)
         {
@@ -28,6 +31,7 @@ namespace SimpleUI
 
                 e.Handled = true;
             };
+            context = titleTextView.Context;
         }
 
         public TextView GetTitleView()
@@ -65,8 +69,13 @@ namespace SimpleUI
         }
         public void SetIcon(Drawable icon)
         {
-            var iconDefault = iconImageView.Context.Resources.GetDrawable(Resource.Drawable.default_img, iconImageView.Context.Theme);
+            var iconDefault = context.Resources.GetDrawable(Resource.Drawable.default_img, context.Theme);
             iconImageView.SetImageDrawable(icon == null ? iconDefault : icon);
+        }
+        public void makeCardStyles()
+        {
+            descriptionTextView.SetTextColor(context.Resources.GetColor(Resource.Color.header, context.Theme));
+            titleTextView.SetFontVariationSettings("'wght' 500");
         }
     }
 }
