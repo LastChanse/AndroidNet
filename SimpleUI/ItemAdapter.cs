@@ -15,8 +15,6 @@ namespace SimpleUI
 
         public override int ItemCount => localDataSet.Count;
 
-        
-
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
             var newHolder = holder as ItemViewHolder;
@@ -24,13 +22,9 @@ namespace SimpleUI
             {
                 newHolder.GetTitleView().Text = localDataSet[position].Title;
                 newHolder.GetDescriptionView().Text = localDataSet[position].Description;
-                var context = newHolder.GetIconView().Context;
-                var iconTemp = localDataSet[position].icon;
-                var iconDefault = context.Resources.GetDrawable(Resource.Drawable.default_img, context.Theme);
-                newHolder.GetIconView().SetImageDrawable(iconTemp == null? iconDefault: iconTemp);
-                var closeBtn = newHolder.GetCloseButton();
-                closeBtn.Touch += (sender, e) => localDataSet[position].closeButtonOnClick();
-                closeBtn.Visibility = localDataSet[position].closeButtonVisible == true ? ViewStates.Visible : ViewStates.Gone;
+                newHolder.SetIcon(localDataSet[position].icon);
+                newHolder.SetCloseButtonOnClick(localDataSet[position].closeButtonOnClick);
+                newHolder.SetCloseButtonVisibility(localDataSet[position].closeButtonVisible);
             }
         }
 

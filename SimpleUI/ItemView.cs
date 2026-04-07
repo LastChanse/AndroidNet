@@ -31,6 +31,16 @@ namespace SimpleUI
             closeButton = FindViewById<Button>(Resource.Id.closeButton);
             box = FindViewById <RelativeLayout> (Resource.Id.box);
 
+            closeButton.Touch += (sender, e) =>
+            {
+                closeButton.Alpha = (
+                    e.Event.Action == MotionEventActions.Up ?
+                    1.0f : 0.6f
+                    );
+
+                e.Handled = true;
+            };
+
             LoadAttrsFromXML(attrs);
 
             ShadowController();

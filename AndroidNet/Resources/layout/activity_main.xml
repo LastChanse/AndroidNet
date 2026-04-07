@@ -62,11 +62,11 @@
 	    />
 		
 		<SimpleUI.HeaderListView
-        android:id="@+id/header_list_component"
+        android:id="@+id/header_list_component1"
 		android:layout_width="match_parent"
         android:layout_height="364dp"
 	    app:headerText="Список"
-		app:buttonAddText="Кнопка"
+		app:buttonAddText="Добавить"
 		app:buttonText="Кнопка"
 		app:buttonVisible="true"
 	    />

@@ -18,6 +18,7 @@ namespace SimpleUI
         SimpleButtonView headerSimpleButton;
         RelativeLayout box;
         RecyclerView listItems;
+        List<ItemData> items;
         int elevation = 8;
 
         #endregion
@@ -50,6 +51,15 @@ namespace SimpleUI
             set => headerAddButton.Visibility = value == false ? ViewStates.Gone : ViewStates.Visible;
         }
 
+        public List<ItemData> itemsList
+        {
+            get => items;
+            set {
+                items = value;
+                listItems.SetAdapter(new ItemAdapter(value));
+            }
+        }
+        
         #endregion
 
         #region ctor
@@ -83,9 +93,17 @@ namespace SimpleUI
 
         #region Public methods
 
-        public void SetOnClick(Action action)
+        public void SetBottomButtonOnClick(Action action)
         {
             headerSimpleButton.Touch += (sender, e) =>
+            {
+                if (e.Event.Action == MotionEventActions.Up)
+                    action();
+            };
+        }
+        public void SetAddButtonOnClick(Action action)
+        {
+            headerAddButton.Touch += (sender, e) =>
             {
                 if (e.Event.Action == MotionEventActions.Up)
                     action();
@@ -106,9 +124,7 @@ namespace SimpleUI
             listItems = FindViewById<RecyclerView>(Resource.Id.listItems);
             box = FindViewById<RelativeLayout>(Resource.Id.box);
 
-            var itemService = new ItemService();
             listItems.SetLayoutManager(new LinearLayoutManager(Context));
-            listItems.SetAdapter(new ItemAdapter(itemService.Items));
 
             LoadAttrsFromXML(attrs);
 
