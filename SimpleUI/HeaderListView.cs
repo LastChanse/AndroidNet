@@ -17,9 +17,10 @@ namespace SimpleUI
         Button headerAddButton;
         SimpleButtonView headerSimpleButton;
         RelativeLayout box;
-        RecyclerView listItems;
+        RecyclerView itemsListView;
         List<ItemData> items;
         int elevation = 8;
+        bool cardItemModeValue = false;
 
         #endregion
 
@@ -30,25 +31,41 @@ namespace SimpleUI
             get => headerTextView.Text;
             set => headerTextView.Text = value == null ? "Header" : value;
         }
+
         public string buttonText
         {
             get => headerSimpleButton.Text;
             set => headerSimpleButton.Text = value == null ? "Button" : value;
         }
+
         public bool buttonVisible
         {
             get => headerSimpleButton.Visibility == ViewStates.Visible;
             set => headerSimpleButton.Visibility = value == true ? ViewStates.Visible : ViewStates.Gone;
         }
+
         public string buttonAddText
         {
             get => headerAddButton.Text;
             set => headerAddButton.Text = value == null ? "Button" : value;
         }
+
         public bool buttonAddVisible
         {
             get => headerAddButton.Visibility == ViewStates.Visible;
             set => headerAddButton.Visibility = value == false ? ViewStates.Gone : ViewStates.Visible;
+        }
+
+        public bool cardItemMode
+        {
+            get => cardItemModeValue;
+            set {
+                cardItemModeValue = value;
+                if (value == true)
+                    itemsListView.SetLayoutManager(new LinearLayoutManager(Context, LinearLayoutManager.Horizontal, false));
+                else
+                    itemsListView.SetLayoutManager(new LinearLayoutManager(Context));
+            }
         }
 
         public List<ItemData> itemsList
@@ -56,7 +73,7 @@ namespace SimpleUI
             get => items;
             set {
                 items = value;
-                listItems.SetAdapter(new ItemAdapter(value));
+                itemsListView.SetAdapter(new ItemAdapter(value, cardItemModeValue));
             }
         }
         
@@ -121,10 +138,11 @@ namespace SimpleUI
             headerTextView = FindViewById<TextView>(Resource.Id.headerText);
             headerAddButton = FindViewById<Button>(Resource.Id.addButton);
             headerSimpleButton = FindViewById<SimpleButtonView>(Resource.Id.headerButton);
-            listItems = FindViewById<RecyclerView>(Resource.Id.listItems);
+            itemsListView = FindViewById<RecyclerView>(Resource.Id.listItems);
             box = FindViewById<RelativeLayout>(Resource.Id.box);
 
-            listItems.SetLayoutManager(new LinearLayoutManager(Context));
+
+            itemsListView.SetLayoutManager(new LinearLayoutManager(Context));
 
             LoadAttrsFromXML(attrs);
 
@@ -161,6 +179,7 @@ namespace SimpleUI
             buttonText = customAttrs.GetString(Resource.Styleable.HeaderList_buttonText);
             buttonAddVisible = customAttrs.GetBoolean(Resource.Styleable.HeaderList_buttonVisible, true);
             buttonAddText = customAttrs.GetString(Resource.Styleable.HeaderList_buttonAddText);
+            cardItemMode = customAttrs.GetBoolean(Resource.Styleable.HeaderList_cardItemMode, false);
         }
 
         void ShadowController()

@@ -60,15 +60,22 @@
 			app:description="Описание"
 			app:closeButtonVisible="true"
 	    />
-		
+
 		<SimpleUI.HeaderListView
         android:id="@+id/header_list_component1"
 		android:layout_width="match_parent"
         android:layout_height="364dp"
 	    app:headerText="Список"
 		app:buttonAddText="Добавить"
-		app:buttonText="Кнопка"
-		app:buttonVisible="true"
+			app:buttonText="Кнопка"
+			app:buttonVisible="true"
+	    />
+
+		<SimpleUI.HeaderListView
+        android:id="@+id/header_list_component2"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		app:cardItemMode="true"
 	    />
 		
 

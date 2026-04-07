@@ -9,6 +9,7 @@ namespace AndroidNet
         HeaderView headerView;
         ItemView item;
         HeaderListView headerListView1;
+        HeaderListView headerListView2;
 
         protected override void OnCreate(Bundle? savedInstanceState)
         {
@@ -27,6 +28,19 @@ namespace AndroidNet
 
             headerListView1.itemsList = new List<ItemData>() {
                 new ItemData(1, "Задача 1", "Создать макет", headerListView1.Context.Resources.GetDrawable(Resource.Drawable.orange_img, headerListView1.Context.Theme), true, () => Toast.MakeText(headerListView1.Context, "Кнопка с крестиком нажата", ToastLength.Short).Show()),
+                new ItemData(2, "Задача 2", "Внести 2 правки"),
+                new ItemData(3, "Задача 3", "Реализовать доп. функционал"),
+                new ItemData(4, "Задача 4", "Описание"),
+                new ItemData(5, "Задача 5", "Описание"),
+                new ItemData(6, "Задача 6", "Описание"),
+                new ItemData(7, "Задача 7", "Описание"),
+                new ItemData(8, "Задача 8", "Описание")
+            };
+
+            headerListView2 = FindViewById<HeaderListView>(Resource.Id.header_list_component2);
+
+            headerListView2.itemsList = new List<ItemData>() {
+                new ItemData(1, "Задача 1", "Создать макет", headerListView2.Context.Resources.GetDrawable(Resource.Drawable.orange_img, headerListView2.Context.Theme)),
                 new ItemData(2, "Задача 2", "Внести 2 правки"),
                 new ItemData(3, "Задача 3", "Реализовать доп. функционал"),
                 new ItemData(4, "Задача 4", "Описание"),

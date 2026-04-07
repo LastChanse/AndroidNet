@@ -23,5 +23,6 @@
 		<attr name="buttonAddText" format="string" />
 		<attr name="buttonVisible" format="boolean" />
 		<attr name="buttonText" format="string" />
+		<attr name="cardItemMode" format="boolean" />
 	</declare-styleable>
 </resources>

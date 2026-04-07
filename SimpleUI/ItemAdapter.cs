@@ -7,10 +7,12 @@ namespace SimpleUI
     class ItemAdapter : RecyclerView.Adapter
     {
         List<ItemData> localDataSet;
+        bool localCardMode = false;
 
-        public ItemAdapter(List<ItemData> dataSet)
+        public ItemAdapter(List<ItemData> dataSet, bool cardMode = false)
         {
             localDataSet = dataSet;
+            localCardMode = cardMode;
         }
 
         public override int ItemCount => localDataSet.Count;
@@ -30,9 +32,19 @@ namespace SimpleUI
 
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
         {
-            var view = LayoutInflater.From(parent.Context)
-                                      .Inflate(Resource.Layout.item_frame_layout, parent, false);
+            View view;
+            if (localCardMode)
+            {
+                view = LayoutInflater.From(parent.Context)
+                                      .Inflate(Resource.Layout.item_card_frame_layout, parent, false);
 
+            } else
+            {
+                view = LayoutInflater.From(parent.Context)
+                                          .Inflate(Resource.Layout.item_frame_layout, parent, false);
+            }
+
+            
             return new ItemViewHolder(view);
         }
     }
