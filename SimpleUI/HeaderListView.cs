@@ -50,12 +50,6 @@ namespace SimpleUI
             set => headerAddButton.Text = value == null ? "Button" : value;
         }
 
-        public bool buttonAddVisible
-        {
-            get => headerAddButton.Visibility == ViewStates.Visible;
-            set => headerAddButton.Visibility = value == false ? ViewStates.Gone : ViewStates.Visible;
-        }
-
         public bool cardItemMode
         {
             get => cardItemModeValue;
@@ -108,27 +102,6 @@ namespace SimpleUI
 
         #endregion
 
-        #region Public methods
-
-        public void SetBottomButtonOnClick(Action action)
-        {
-            headerSimpleButton.Touch += (sender, e) =>
-            {
-                if (e.Event.Action == MotionEventActions.Up)
-                    action();
-            };
-        }
-        public void SetAddButtonOnClick(Action action)
-        {
-            headerAddButton.Touch += (sender, e) =>
-            {
-                if (e.Event.Action == MotionEventActions.Up)
-                    action();
-            };
-        }
-
-        #endregion
-
         #region Private methods
 
         void Initialize(IAttributeSet? attrs)
@@ -144,7 +117,7 @@ namespace SimpleUI
             itemsListView.SetLayoutManager(new LinearLayoutManager(Context));
 
             LoadAttrsFromXML(attrs);
-            
+
             var listParams = (RelativeLayout.LayoutParams)itemsListView.LayoutParameters;
             var buttonParams = (RelativeLayout.LayoutParams)headerSimpleButton.LayoutParameters;
             if (cardItemModeValue)
@@ -180,23 +153,23 @@ namespace SimpleUI
                 var color = Context.Resources.GetColor(Resource.Color.button, Context.Theme);
 
                 headerAddButton.SetTextColor(
-                    e.Event.Action == MotionEventActions.Up?
+                    e.Event.Action == MotionEventActions.Up ?
                     color : color_clicked
                     );
-                
+
                 e.Handled = true;
             };
 
             ShadowController();
         }
 
-        void LoadAttrsFromXML(IAttributeSet? attrs) {
+        void LoadAttrsFromXML(IAttributeSet? attrs)
+        {
             var customAttrs = Context.Theme.ObtainStyledAttributes(attrs, Resource.Styleable.HeaderList, 0, 0);
-            
+
             headerText = customAttrs.GetString(Resource.Styleable.HeaderList_headerText);
             buttonVisible = customAttrs.GetBoolean(Resource.Styleable.HeaderList_buttonVisible, false);
             buttonText = customAttrs.GetString(Resource.Styleable.HeaderList_buttonText);
-            buttonAddVisible = customAttrs.GetBoolean(Resource.Styleable.HeaderList_buttonVisible, true);
             buttonAddText = customAttrs.GetString(Resource.Styleable.HeaderList_buttonAddText);
             cardItemMode = customAttrs.GetBoolean(Resource.Styleable.HeaderList_cardItemMode, false);
         }
@@ -209,6 +182,27 @@ namespace SimpleUI
                 box = FindViewById<RelativeLayout>(Resource.Id.box);
                 box.Elevation = DpToPx(Context, elevation);
             }
+        }
+
+        #endregion
+
+        #region Public methods
+
+        public void SetBottomButtonOnClick(Action action)
+        {
+            headerSimpleButton.Touch += (sender, e) =>
+            {
+                if (e.Event.Action == MotionEventActions.Up)
+                    action();
+            };
+        }
+        public void SetAddButtonOnClick(Action action)
+        {
+            headerAddButton.Touch += (sender, e) =>
+            {
+                if (e.Event.Action == MotionEventActions.Up)
+                    action();
+            };
         }
 
         #endregion

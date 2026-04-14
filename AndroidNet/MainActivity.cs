@@ -18,7 +18,7 @@ namespace AndroidNet
         {
             base.OnCreate(savedInstanceState);
 
-            this.RequestWindowFeature(WindowFeatures.NoTitle);
+            RequestWindowFeature(WindowFeatures.NoTitle);
 
             SetContentView(Resource.Layout.activity_main);
 
@@ -37,36 +37,32 @@ namespace AndroidNet
             };
 
             headerListView1 = FindViewById<HeaderListView>(Resource.Id.header_list_component1);
-            headerListView1.SetBottomButtonOnClick(() => { Toast.MakeText(this, "Кнопка списка нажата", ToastLength.Short).Show(); });
-            headerListView1.SetAddButtonOnClick(() => { Toast.MakeText(this, "Кнопка добавления в список нажата", ToastLength.Short).Show(); });
-
+            headerListView1.SetBottomButtonOnClick(() => { Toast.MakeText(this, "Кнопка вертикального списка нажата", ToastLength.Short).Show(); });
+            headerListView1.SetAddButtonOnClick(() => { Toast.MakeText(this, "Кнопка добавления в вертикальный список нажата", ToastLength.Short).Show(); });
             headerListView1.itemsList = data;
 
             headerListView11 = FindViewById<HeaderListView>(Resource.Id.header_list_component11);
-            headerListView11.SetAddButtonOnClick(() => { Toast.MakeText(this, "Кнопка добавления в список нажата", ToastLength.Short).Show(); });
-
+            headerListView11.SetAddButtonOnClick(() => { Toast.MakeText(this, "Кнопка добавления в вертикальный список2 нажата", ToastLength.Short).Show(); });
             headerListView11.itemsList = data;
 
             headerListView2 = FindViewById<HeaderListView>(Resource.Id.header_list_component2);
-            headerListView2.SetAddButtonOnClick(() => { Toast.MakeText(this, "Кнопка добавления в список нажата", ToastLength.Short).Show(); });
-            headerListView2.SetAddButtonOnClick(() => { Toast.MakeText(this, "Кнопка добавления в список нажата", ToastLength.Short).Show(); });
-
+            headerListView2.SetBottomButtonOnClick(() => { Toast.MakeText(this, "Кнопка горизонтального списка нажата", ToastLength.Short).Show(); });
+            headerListView2.SetAddButtonOnClick(() => { Toast.MakeText(this, "Кнопка добавления в горизонтальный список нажата", ToastLength.Short).Show(); });
             headerListView2.itemsList = data;
 
             headerListView22 = FindViewById<HeaderListView>(Resource.Id.header_list_component22);
-            headerListView22.SetBottomButtonOnClick(() => { Toast.MakeText(this, "Кнопка списка нажата", ToastLength.Short).Show(); });
-
+            headerListView22.SetAddButtonOnClick(() => { Toast.MakeText(this, "Кнопка добавления в горизонтальный список2 нажата", ToastLength.Short).Show(); });
             headerListView22.itemsList = data;
 
 
             item = FindViewById<ItemView>(Resource.Id.item);
-            item.SetOnCloseClick(() => { Toast.MakeText(this, "Кнопка элемента нажата", ToastLength.Short).Show(); });
+            item.SetOnCloseClick(() => { Toast.MakeText(this, "Кнопка с крестиком нажата", ToastLength.Short).Show(); });
 
             SimpleButtonView button = FindViewById<SimpleButtonView>(Resource.Id.button1);
             button.Touch += (sender, e) =>
             {
                 if (e.Event.Action == MotionEventActions.Up)
-                    Toast.MakeText(this, "Кнопка с крестиком нажата", ToastLength.Short).Show();
+                    Toast.MakeText(this, "Кнопка с сообщением нажата", ToastLength.Short).Show();
             };
         }
     }

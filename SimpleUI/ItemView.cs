@@ -51,7 +51,7 @@ namespace SimpleUI
             closeButton.Touch += (sender, e) =>
             {
                 if (e.Event.Action == MotionEventActions.Up)
-                    Toast.MakeText(Context, "Кнопка нажата", ToastLength.Short).Show();
+                    action();
             };
         }
 
